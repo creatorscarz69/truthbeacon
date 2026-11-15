@@ -1,0 +1,25 @@
+{
+  "name": "MONSTRUM \u2014 TruthBeacon",
+  "short_name": "MONSTRUM",
+  "description": "Free local truth beacon: claim ledger, local attestation rounds, RSS and grid embedding.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#090b0d",
+  "theme_color": "#090b0d",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": [
+    "utilities",
+    "productivity"
+  ],
+  "prefer_related_applications": false
+}
