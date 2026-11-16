@@ -2,6 +2,15 @@
 
 All notable changes to TruthBeacon are documented here.
 
+## 2026-11-16
+
+### PNG share cards
+
+- Every claim card has a new **▣ CARD** button. It draws a 1200×630 PNG share card on your device (status badge, the claim text wrapped and cut with … if long, a short SHA-256, the round count, a "not independent verification" note, and the beacon's address) and saves it as `truthbeacon-claim-<first 12 hash chars>.png`. Post it anywhere images travel: social feeds, chats, slides.
+- On touch devices that support sharing files, the card goes to the device share sheet with the claim's portable link; elsewhere it downloads. DEMO claims ask for confirmation first. Uses only the built-in canvas, no external fonts, services or tracking.
+- Read-only: nothing is written to storage and the broadcast count is not changed. `truthbeacon:v1:claims` shape unchanged. Service worker cache bumped to `truthbeacon-v1-2026-11-16-share-card`.
+- Validation: JS syntax check plus Node tests (text wrapping incl. long words, Unicode, line limit with ellipsis; full card drawing against a stub canvas). Not yet checked in a real browser (headless Chrome on the build box hangs).
+
 ## 2026-11-13
 
 ### Portable claim embeds

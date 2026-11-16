@@ -55,3 +55,7 @@ Open **DEPLOY → 05 / CHECK A RECEIVED BROADCAST**, paste the shared message (o
 ## Open-data CSV
 
 **DEPLOY → 02 / RSS + OPEN DATA → Download CSV** saves non-demo claims (all statuses) as `truthbeacon-claims.csv` for spreadsheets and open-data portals. Columns: id, status, text, sha256, rounds, tags, sources, createdAt, updatedAt, broadcasts, link (a portable `#c=` link). Review notes and history are not included. If a cell starts with `=`, `+`, `-` or `@`, it gets a leading `'` so a spreadsheet won't run it as a formula. Use Export JSON for a full, exact backup.
+
+## Share cards (PNG)
+
+Press **▣ CARD** on any claim to save a 1200×630 image of it (status, text, short SHA-256, rounds and the beacon address), made on your device. On phones that can share files it opens the share sheet instead. Nothing is uploaded or stored.
