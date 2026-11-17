@@ -1,7 +1,7 @@
 {
   "name": "MONSTRUM \u2014 TruthBeacon",
   "short_name": "MONSTRUM",
-  "description": "Free local truth beacon: claim ledger, local attestation rounds, RSS and grid embedding.",
+  "description": "Free local truth beacon: claim ledger, local attestation rounds, RSS, grid embedding and share-to-claim capture.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
@@ -21,5 +21,14 @@
     "utilities",
     "productivity"
   ],
-  "prefer_related_applications": false
+  "prefer_related_applications": false,
+  "share_target": {
+    "action": "./",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  }
 }

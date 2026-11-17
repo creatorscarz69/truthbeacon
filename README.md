@@ -59,3 +59,9 @@ Open **DEPLOY → 05 / CHECK A RECEIVED BROADCAST**, paste the shared message (o
 ## Share cards (PNG)
 
 Press **▣ CARD** on any claim to save a 1200×630 image of it (status, text, short SHA-256, rounds and the beacon address), made on your device. On phones that can share files it opens the share sheet instead. Nothing is uploaded or stored.
+
+## Send to beacon (share target + bookmarklet)
+
+- Installed as an app on Android or ChromeOS, TruthBeacon appears in the system **Share** menu: share text or a link to it and the claim form opens pre-filled.
+- On desktop, open **DEPLOY → 06 / SEND TO BEACON** and drag **⇪ Send to TruthBeacon** to your bookmarks bar. Select text on any page and click it.
+- You can also link directly: `https://creatorscarz69.github.io/truthbeacon/?text=YOUR+CLAIM&url=https://source.example`. Nothing is saved until you press Submit.

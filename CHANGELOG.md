@@ -2,6 +2,16 @@
 
 All notable changes to TruthBeacon are documented here.
 
+## 2026-11-17
+
+### Send to beacon: share target + bookmarklet
+
+- **Share menu capture:** the web app manifest now declares a `share_target`. Once TruthBeacon is installed as an app (Android, ChromeOS and other browsers that support Web Share Target), it shows up in the device Share menu. Sharing text or a link from another app opens the console with the claim form filled in.
+- **Bookmarklet:** new DEPLOY panel **06 / SEND TO BEACON** with a draggable **⇪ Send to TruthBeacon** bookmarklet and a **Copy bookmarklet** button. Select text on any page, click the bookmark, and the selected text plus the page address open in the claim form.
+- How it works: links like `?text=…&url=…&title=…` (or `?share-target=1&…`) fill the claim text (max 2,000 characters) and add the link to Sources. Only http/https links are accepted. If the shared text contains a link and no separate URL was sent, the link is moved to Sources. If there is no text, the title is used. If you are already typing a different claim, you are asked before it is replaced. The query is then removed from the address bar.
+- Nothing is saved until you press **Submit**. `truthbeacon:v1:claims` shape unchanged. Embed/RSS modes are unaffected. Service worker cache bumped to `truthbeacon-v1-2026-11-17-share-target`.
+- Validation: JS syntax check plus Node tests (no-op without parameters, URL moved out of text, unsafe `javascript:` URL rejected, title fallback, 2,000-character cap, empty share, bookmarklet output round trip). Not yet checked in a real browser or on an installed Android app.
+
 ## 2026-11-16
 
 ### PNG share cards
