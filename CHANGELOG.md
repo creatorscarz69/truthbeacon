@@ -2,6 +2,16 @@
 
 All notable changes to TruthBeacon are documented here.
 
+## 2026-11-18
+
+### ❝ CITE: Markdown claim citations
+
+- Every claim card has a new **❝ CITE** button. It copies a ready-to-paste Markdown citation for forums, GitHub issues, Reddit, wikis and notes: the claim text as a quote block, its status (marked as a local confidence label, not independent verification), the round count, the full SHA-256, http/https sources (up to 10), tags, and a portable `#c=` link to **open, fingerprint-check and optionally save** the claim.
+- Safe to paste: Markdown characters in the claim (`*`, `_`, `[`, `]`, `<`, `>`, backticks, `|`, `~`, and heading/list markers at the start of a line) are escaped, so a claim can't add links, HTML or formatting it didn't have. Non-http(s) sources such as `javascript:` are dropped. Spaces and parentheses in links are percent-encoded so they don't break.
+- If the clipboard is blocked, the existing copy dialog opens instead. DEMO claims ask for confirmation first.
+- Read-only: nothing is written to storage and the broadcast count is not changed. `truthbeacon:v1:claims` shape unchanged. Service worker cache bumped to `truthbeacon-v1-2026-11-18-cite`.
+- Validation: JS syntax check plus Node tests (Markdown escaping incl. heading/list markers and HTML, unsafe source dropped, URL encoding of spaces/angle brackets/parentheses, singular/plural rounds, optional sources/tags, CRLF handling, Unicode kept). Not yet checked in a real browser.
+
 ## 2026-11-17
 
 ### Send to beacon: share target + bookmarklet
