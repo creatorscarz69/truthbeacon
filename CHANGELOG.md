@@ -2,6 +2,16 @@
 
 All notable changes to TruthBeacon are documented here.
 
+## 2026-11-19
+
+### JSON Feed 1.1 open-data export
+
+- DEPLOY panel **02 / RSS + OPEN DATA** has a new **Download JSON Feed** button. It saves `truthbeacon-feed.json`, a standard [JSON Feed 1.1](https://jsonfeed.org/version/1.1) that feed readers, static-site tools and scripts can use without parsing XML.
+- Same entries as RSS: non-demo CERTAIN claims, newest first. Each item has a stable `urn:truthbeacon:claim:<id>` id, the claim text plus "local label, not independent verification" note, a portable `#c=` link (opens and fingerprint-checks the claim on any device, unlike the device-local `#claim=` link), created/updated dates, tags, the first http/https source as `external_url`, and a `_truthbeacon` extension with status, SHA-256, round count and http/https sources (up to 10).
+- Privacy: private review notes are not included, and non-http(s) sources such as `javascript:` are dropped. If there are no non-demo CERTAIN claims, a toast explains this and nothing is downloaded.
+- Read-only: nothing is written to storage. `truthbeacon:v1:claims` shape unchanged. Service worker cache bumped to `truthbeacon-v1-2026-11-19-json-feed`.
+- Validation: JS syntax check, manifest JSON check, local `python3 -m http.server` load check, plus Node tests (feed version and home URL, CERTAIN-only and demo exclusion, newest-first order, notes and unsafe sources excluded, `external_url` and tags, whitespace-collapsed titles, portable link round trip with Unicode, empty feed). Not yet checked in a real browser.
+
 ## 2026-11-18
 
 ### ❝ CITE: Markdown claim citations

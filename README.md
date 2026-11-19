@@ -38,7 +38,7 @@ Before changing a valid existing stored ledger, its raw JSON is retained once in
 
 SHA-256 uses Web Crypto when available and an equivalent UTF-8 pure-JavaScript SHA-256 fallback otherwise. The fingerprint check detects text/hash mismatches, not whether a claim is true. Existing fingerprints are preserved, never silently rewritten.
 
-`sw.js` caches the shell for offline use; navigations use network-first with an offline shell fallback, including query modes. Service workers require localhost or HTTPS. The current cache is `truthbeacon-v1-2026-11-12-csv`; activation only clears older TruthBeacon caches. Refresh once online to pick up an update.
+`sw.js` caches the shell for offline use; navigations use network-first with an offline shell fallback, including query modes. Service workers require localhost or HTTPS. The current cache is `truthbeacon-v1-2026-11-19-json-feed`; activation only clears older TruthBeacon caches. Refresh once online to pick up an update.
 
 ## Scope
 
@@ -55,6 +55,11 @@ Open **DEPLOY → 05 / CHECK A RECEIVED BROADCAST**, paste the shared message (o
 ## Open-data CSV
 
 **DEPLOY → 02 / RSS + OPEN DATA → Download CSV** saves non-demo claims (all statuses) as `truthbeacon-claims.csv` for spreadsheets and open-data portals. Columns: id, status, text, sha256, rounds, tags, sources, createdAt, updatedAt, broadcasts, link (a portable `#c=` link). Review notes and history are not included. If a cell starts with `=`, `+`, `-` or `@`, it gets a leading `'` so a spreadsheet won't run it as a formula. Use Export JSON for a full, exact backup.
+
+
+## JSON Feed
+
+**DEPLOY → 02 / RSS + OPEN DATA → Download JSON Feed** saves `truthbeacon-feed.json`, a [JSON Feed 1.1](https://jsonfeed.org/version/1.1) of the same entries as RSS (non-demo CERTAIN claims, newest first). Many feed readers and scripts accept it. Each item has the claim text, a portable `#c=` link that opens and fingerprint-checks the claim, created/updated dates, tags, the first http/https source as `external_url`, and a `_truthbeacon` block with status, SHA-256, round count and http/https sources. Unlike RSS, private review notes are left out. It is a snapshot: publish the file on any static host to give feed readers a URL.
 
 ## Share cards (PNG)
 
