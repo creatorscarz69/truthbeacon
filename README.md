@@ -50,7 +50,7 @@ JavaScript syntax checks passed. Manifest JSON and icon SVG parse successfully. 
 
 ## Checking a broadcast you received
 
-Open **DEPLOY → 05 / CHECK A RECEIVED BROADCAST**, paste the shared message (or the claim text and its SHA-256), and press **Check fingerprint**. A MATCH means the text has not been edited since it was fingerprinted; it does not prove the claim is true or who wrote it. The check runs locally and stores nothing.
+Open **DEPLOY → 05 / CHECK A RECEIVED BROADCAST**, paste the shared message, a **❝ CITE** Markdown quote, a portable claim link (`#c=…`, including `?embed=1#c=…` embed links), or the claim text and its SHA-256, and press **Check fingerprint** (or Ctrl/⌘ + Enter). If the paste contains both a link and visible text, both are checked and compared, so a quote that was edited while the link was left intact shows as a MISMATCH. The result is labelled MATCH, MISMATCH, NO FINGERPRINT or CANNOT CHECK, with a colored border and the same words in text. A MATCH means the text has not been edited since it was fingerprinted; it does not prove the claim is true or who wrote it. The check runs locally and stores nothing.
 
 ## Open-data CSV
 

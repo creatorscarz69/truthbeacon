@@ -2,6 +2,17 @@
 
 All notable changes to TruthBeacon are documented here.
 
+## 2026-11-20
+
+### Check anything: links, ❝ CITE quotes and broadcasts
+
+- DEPLOY panel **05 / CHECK A RECEIVED BROADCAST** now accepts every format TruthBeacon shares, not just the plain broadcast text: portable claim links (`#c=…`, including `?embed=1#c=…` embed links and links pasted inside other text), **❝ CITE** Markdown quotes (the escaping is undone so the exact claim text is checked), plain broadcasts (LF or CRLF), or plain text plus a SHA-256. Before today, CITE quotes and links could not be checked here.
+- Cross-check: if the paste has both a link and visible text (a CITE quote, or a broadcast followed by its link), both are fingerprint-checked **and** compared with each other. A quote that was edited while the original link was left intact now shows as MISMATCH instead of passing. A SHA-256 typed in the second field overrides the one in the paste, and a note appears if it differs from the one stored in the link.
+- Clearer results: a headline verdict (✓ MATCH, ✕ MISMATCH, ○ NO FINGERPRINT, ! CANNOT CHECK) then one line per check, with a colored border (green, red or gold) and the same words in text, so the result does not rely on color. It is still announced by the existing `aria-live` status region. Damaged links and malformed hashes get a specific message. **Ctrl/⌘ + Enter** in the paste box and **Enter** in the hash field run the check.
+- Read-only and local: nothing is uploaded or written to storage. `truthbeacon:v1:claims` shape unchanged. Service worker cache bumped to `truthbeacon-v1-2026-11-20-verify-anything`.
+- Known limit: CITE removes trailing spaces at the ends of lines, so a claim whose lines ended in spaces shows MISMATCH from its quote alone. Its `#c=` link still checks correctly.
+- Validation: JS syntax check, manifest JSON check, local `python3 -m http.server` load check, plus Node tests (link only: match, wrong hash, no hash; damaged link; CITE round trip with the app's real `citeMarkdown` incl. Markdown characters, headings/lists, backslashes and Unicode; edited CITE quote with an intact link; broadcast with a link, LF and CRLF; plain text with an upper-case hash; malformed hash; empty input; typed hash overriding the link hash; text that differs from its link; `?embed=1#c=` links). Not yet checked in a real browser.
+
 ## 2026-11-19
 
 ### JSON Feed 1.1 open-data export
