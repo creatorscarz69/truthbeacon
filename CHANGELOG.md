@@ -2,6 +2,18 @@
 
 All notable changes to TruthBeacon are documented here.
 
+## 2026-11-23
+
+### Follow another beacon (JSON Feed import)
+
+- DEPLOY panel **02 / RSS + OPEN DATA** has a new **FOLLOW ANOTHER BEACON / JSON FEED URL** field with **Fetch + review**. Paste the address of a published `truthbeacon-feed.json` (or any JSON Feed 1.1) and its items come into your ledger as **UNRESOLVED** claims, tagged `from-feed`, so you review them yourself. Beacons can now pick up each other's published claims: a first step from single beacons to a grid.
+- **↑ Import JSON** now also accepts a JSON Feed file, not just a TruthBeacon backup.
+- **Follow links:** `?follow=https://…/truthbeacon-feed.json` opens DEPLOY with the feed address filled in. Nothing is fetched until you press **Fetch + review**. The parameter is then removed from the address bar.
+- Every fingerprint is checked on this device first. Items whose text does not match their SHA-256 (or whose portable link and feed hash disagree) are skipped and counted. Items already in your ledger (same fingerprint) are skipped. Items with no fingerprint are imported and their notes say so. You see the counts and confirm before anything is saved. The current ledger is copied to `truthbeacon:v1:preImportBackup` first, and no local claims are deleted.
+- The other beacon's label is written in each claim's notes and history (`imported-feed`), never adopted. Only http/https sources are kept (up to 10). At most 500 items and 2 MB per feed. Fetches send no cookies and no referrer; only https:// addresses (and http://localhost) are allowed. The feed host must allow cross-origin reads (GitHub Pages does); otherwise download the file and use ↑ Import JSON.
+- `truthbeacon:v1:claims` shape unchanged (new claims use the existing fields). Service worker cache bumped to `truthbeacon-v1-2026-11-23-follow-feed`.
+- Validation: JS syntax check, manifest JSON check, local `python3 -m http.server` load check, plus Node tests using the app's real `jsonFeed` output (round trip incl. Unicode and Markdown characters; UNRESOLVED, round 0 and `from-feed` tag; sender label in notes; private notes, `javascript:` sources and demos not carried; dedupe against the ledger; edited text skipped; link vs feed hash disagreement skipped; content-text fallback without a link; generic feed without hashes; unreadable and over-long items skipped; URL scheme rules). Not yet checked in a real browser.
+
 ## 2026-11-20
 
 ### Check anything: links, ❝ CITE quotes and broadcasts
