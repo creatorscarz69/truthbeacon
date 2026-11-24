@@ -2,6 +2,17 @@
 
 All notable changes to TruthBeacon are documented here.
 
+## 2026-11-24
+
+### Followed beacons list
+
+- DEPLOY panel **02 / RSS + OPEN DATA** now remembers the beacons you follow. When **Fetch + review** reads a feed successfully and you confirm the import (or it has nothing new), its address is saved under **FOLLOWED BEACONS**, below the FOLLOW ANOTHER BEACON field, with the feed's title, its address, when it was last checked and how many new items that check found.
+- Each followed beacon has **Check for new** and **Unfollow**. **Check all** checks every followed feed one after another. Every check uses the same fetch, fingerprint check, dedupe, confirmation and pre-import backup as Fetch + review, so nothing is imported until you confirm. Progress and a final summary ("Checked N followed beacon(s): … read, … could not be read, … new claim(s) found") appear in the existing status line, which screen readers announce. Buttons are disabled while a check runs and have labels that name the beacon (e.g. "Check Alpha Beacon for new claims").
+- If you cancel the confirmation, a feed you do not follow yet is not added. A feed you already follow just gets its check time and new-item count updated. Unfollow asks first and keeps every claim already imported.
+- Stored only on this device in the new key `truthbeacon:v1:follows` (array of `{url,label,addedAt,lastCheckedAt,lastNewCount}`, up to 50, no duplicates). A missing or malformed value counts as an empty list and is not overwritten until you follow a feed. The same address rules as Fetch + review apply (https://, or http://localhost); fragments and addresses with embedded credentials are not stored. Nothing is checked in the background: there is no polling, no tracking and no server.
+- `truthbeacon:v1:claims` shape unchanged. Service worker cache bumped to `truthbeacon-v1-2026-11-24-followed-beacons`.
+- Validation: JS syntax check, manifest JSON check, local `python3 -m http.server` load check (200 for the app and all shell files), Node tests of the follows logic taken from the real file (parse/normalize of missing, malformed and junk entries; dedupe incl. fragments; 50-entry cap; label cleanup and 120-char cap; add then update keeps `addedAt`; remove; URL rules: https and localhost allowed; http, `javascript:`, `data:`, `file:`, credentials and over-long addresses rejected; no polling), plus jsdom tests of the real page with fake fetch and confirm (malformed key ignored; confirmed import followed and listed with accessible labels; Check for new adds no duplicates; canceled import not followed; Check all runs in order and reports failures; Unfollow keeps claims). Not yet checked in a real browser.
+
 ## 2026-11-23
 
 ### Follow another beacon (JSON Feed import)
