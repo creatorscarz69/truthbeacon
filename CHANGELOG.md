@@ -2,6 +2,17 @@
 
 All notable changes to TruthBeacon are documented here.
 
+## 2026-11-25
+
+### Share your grid: followed beacons as OPML
+
+- DEPLOY panel **02 / RSS + OPEN DATA** can now export and import the followed-beacons list as **OPML 2.0**, the subscription-list format feed readers use. Beacons can hand each other their whole list of followed feeds in one file instead of one `?follow=` link at a time.
+- **↓ Export list (OPML)** (next to **Check all** under FOLLOWED BEACONS) downloads `truthbeacon-follows.opml` with one `<outline type="rss">` per followed beacon: its label and feed address only. Check times and new-item counts stay on this device. Labels and addresses are XML-escaped. With an empty list, a toast explains this and nothing is downloaded.
+- **↑ Import followed list (OPML)** (always shown, below the feed field) reads an OPML file from another beacon or a feed reader, including nested folders. The same address rules as Fetch + review apply: only https:// (or http://localhost) feed addresses are kept; fragments are dropped; `javascript:`, plain http, embedded credentials and over-long addresses are skipped and counted. Feeds you already follow are skipped, and the 50-beacon limit is kept. You see the counts ("N new, N already followed, N skipped") and confirm first. Imported beacons appear as "Last checked: never". **Nothing is fetched and no claims change** until you press Check for new or Check all. Files over 1 MB or that are not OPML are rejected and nothing changes. Results appear in the existing status line, which screen readers announce; both buttons have descriptions.
+- Fix: a followed beacon saved with no new-item count (`lastNewCount: null`) was read back as 0 ("0 new at last check"). It now stays empty.
+- `truthbeacon:v1:follows` shape unchanged (imported entries use the same `{url,label,addedAt,lastCheckedAt,lastNewCount}` fields, with `lastCheckedAt` and `lastNewCount` set to null). `truthbeacon:v1:claims` unchanged. No server, no tracking, no background polling. Service worker cache bumped to `truthbeacon-v1-2026-11-25-opml-grid`.
+- Validation: JS syntax check, manifest JSON check, local `python3 -m http.server` load check (200 for the app, shell files and a `?follow=` link), Node tests of the OPML logic taken from the real file (export escaping of `&`, `<`, quotes and apostrophes; date; empty list; merge dedupe incl. fragments; unsafe addresses skipped; entry shape; null new-item count kept as null), plus jsdom tests of the real page (export is well-formed OPML that parses back with the original labels and leaves out check times; re-importing your own export adds nothing; canceled import changes nothing; mixed list with nested folders, duplicates, `javascript:`, http and credential addresses adds only the safe new feeds and fetches nothing; HTML, malformed, empty, JSON and over-1 MB files rejected; 50-beacon cap reported; empty list downloads nothing), and the earlier follows tests still pass. Not yet checked in a real browser.
+
 ## 2026-11-24
 
 ### Followed beacons list
