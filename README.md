@@ -25,6 +25,7 @@ Keyboard: Arrow Left/Right, Home/End navigate tabs; `N` focuses claim input; `/`
 
 - `?embed=1` or `#embed`: compact Grid Beacon, latest non-demo CERTAIN claim, MONSTRUM / TruthBeacon free attribution, Open and Copy embed.
 - `?embed=1#c=…`: portable **Claim Beacon** for one claim (copy it with **⧉ EMBED** on any claim card). The claim is carried in the link, so every visitor sees the same claim, with an on-device fingerprint check. The label shown is the sender's local label, not independent verification.
+- `?embed=1#b=…`: portable **Beacon Board** with your latest CERTAIN claims (up to 3) carried inside the link, so it shows the same claims on any site, each fingerprint-checked in the visitor's browser. Get it from **DEPLOY → 01 / GRID EMBED → Copy portable board**. It is a snapshot (copy it again after adding CERTAIN claims); review notes and DEMO claims are never included.
 - `?rss=1` or `#rss`: minimal RSS/open-data generator; Copy RSS / Download XML produces RSS 2.0 for non-demo CERTAIN entries, with notes, sources, tags, hashes, dates and deep-links. Static hosting serves HTML here, **not** an RSS Content-Type endpoint. Publish the downloaded XML separately if you need a feed-reader URL; it is a snapshot, not automatically updated.
 - Claim Share uses Web Share when supported; otherwise copies text, confidence disclaimer, sources, fingerprint and `#claim=<id>` deep-link. Clipboard refusal opens a manual-copy dialog. A canceled device share does not count as a broadcast. Broadcast count means a successful handoff/copy, not delivery or views.
 - Claim shares use a **portable link** (`#c=…`) that carries the claim text, fingerprint, label, sources and tags inside the URL fragment, so it works on any device. The recipient sees a Received claim dialog with an on-device fingerprint check and can choose **Save to my ledger as UNRESOLVED**; the sender's label is shown but never adopted. Older `#claim=<id>` links still only resolve in a browser that already has that claim. App-share/copy-URL controls do not publish data.
@@ -41,7 +42,7 @@ Before changing a valid existing stored ledger, its raw JSON is retained once in
 
 SHA-256 uses Web Crypto when available and an equivalent UTF-8 pure-JavaScript SHA-256 fallback otherwise. The fingerprint check detects text/hash mismatches, not whether a claim is true. Existing fingerprints are preserved, never silently rewritten.
 
-`sw.js` caches the shell for offline use; navigations use network-first with an offline shell fallback, including query modes. Service workers require localhost or HTTPS. The current cache is `truthbeacon-v1-2026-11-25-opml-grid`; activation only clears older TruthBeacon caches. Refresh once online to pick up an update.
+`sw.js` caches the shell for offline use; navigations use network-first with an offline shell fallback, including query modes. Service workers require localhost or HTTPS. The current cache is `truthbeacon-v1-2026-11-26-portable-board`; activation only clears older TruthBeacon caches. Refresh once online to pick up an update.
 
 ## Scope
 

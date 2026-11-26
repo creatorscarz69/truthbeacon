@@ -2,6 +2,16 @@
 
 All notable changes to TruthBeacon are documented here.
 
+## 2026-11-26
+
+### Portable beacon board: embed your latest CERTAIN claims anywhere
+
+- DEPLOY panel **01 / GRID EMBED** has a new **PORTABLE BOARD / LATEST CERTAIN CLAIMS INSIDE THE LINK** snippet with **Copy portable board** and **Open board ↗**. The existing `?embed=1` Grid Beacon reads the *viewer's* browser storage, so visitors on another site see "Awaiting your first CERTAIN claim". The board carries your latest non-demo CERTAIN claims (up to 3, newest first) inside the iframe link (`?embed=1#b=…`), so every visitor on any site sees the same claims.
+- The board shows each claim's label and text (first 240 characters), then checks each fingerprint in the visitor's browser: **FINGERPRINT MATCH #…** in green or **FINGERPRINT MISMATCH** in red for each claim, plus a summary line that screen readers announce ("3 of 3 fingerprint(s) match…" or "1 of 3 claim(s) do NOT match…"). Each claim has **Open + check ↗**, a portable `#c=` link that opens the Received claim dialog so the visitor can save it as UNRESOLVED. The board also shows the date the snapshot was made, says the labels are the sender's local labels and not independent verification, and has a **Copy embed** button so it can be passed on.
+- The board includes each claim's text, SHA-256, label, sources and tags, but never review notes. DEMO, PROBABLE and UNRESOLVED claims are left out. If the claims would make the link longer than 12,000 characters, the older ones are dropped. The iframe height fits the number of claims. With no CERTAIN claims, the snippet is empty, Open board is hidden, and Copy explains why. Damaged, wrong-version, empty, over-long or over-3-claim board links show "damaged or incomplete" and nothing else. It is a snapshot: copy it again after you add CERTAIN claims.
+- No storage changes: `truthbeacon:v1:claims`, `truthbeacon:v1:follows` and `truthbeacon:v1:preImportBackup` are unchanged. The board stores nothing in the visitor's browser. No server, no tracking, no background polling. Internal: the claim-link check is now shared by single-claim links and board links (same rules). Service worker cache bumped to `truthbeacon-v1-2026-11-26-portable-board`.
+- Validation: JS syntax check, manifest JSON check, local `python3 -m http.server` load check (200 for the app, shell files, `?embed=1` and `?embed=1#b=…`), plus jsdom tests of the real page: the snippet holds the 3 newest non-demo CERTAIN claims with no notes and a height that fits; Copy portable board copies it; claims storage untouched; opened in a fresh browser with empty storage, the board shows 3 claims, all MATCH, with Unicode and HTML escaped, valid per-claim `#c=` links and a working Copy embed, and stores nothing; an "Open + check" link opens the Received claim dialog with MATCH; an edited claim shows MISMATCH and the summary warns; damaged, wrong-version, empty, over-3, blank-text and over-long links are rejected; three 2,000-character claims stay under the length cap; with no CERTAIN claims nothing is copied. Single-claim `#c=` embeds, the local `?embed=1` Grid Beacon, and the earlier follows and OPML tests still pass. Not yet checked in a real browser.
+
 ## 2026-11-25
 
 ### Share your grid: followed beacons as OPML

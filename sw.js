@@ -1,5 +1,5 @@
 /* MONSTRUM / TruthBeacon: free local offline shell, no external resources. */
-const CACHE_VERSION = 'truthbeacon-v1-2026-11-25-opml-grid';
+const CACHE_VERSION = 'truthbeacon-v1-2026-11-26-portable-board';
 const APP_SHELL = ['./', './index.html', './manifest.json', './icon.svg'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_VERSION).then(cache => cache.addAll(APP_SHELL)).then(() => self.skipWaiting()));
