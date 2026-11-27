@@ -2,6 +2,16 @@
 
 All notable changes to TruthBeacon are documented here.
 
+## 2026-11-27
+
+### Link previews and install icons: the beacon shows itself when shared
+
+- Sharing the app address anywhere (X, Facebook, LinkedIn, Discord, Slack, Signal, iMessage…) now shows a **preview card** instead of a bare link: new Open Graph and Twitter card tags in index.html, with the title "MONSTRUM // TruthBeacon", a short description (free, local-first, SHA-256 fingerprints, broadcast checks, RSS/JSON Feed, embeddable beacons, no account/backend/tracking) and a new 1200×630 image **og-image.png** with alt text. A canonical link points at https://creatorscarz69.github.io/truthbeacon/. Claim and embed links (`#c=`, `#b=`, `?embed=1`) get the same app card, since previews cannot read the part after #; no claim text is put in any tag.
+- **Install icons:** new PNG icons **icon-192.png**, **icon-512.png**, a padded **icon-maskable-512.png** (safe zone for round/squircle launchers) and **apple-touch-icon.png** (180×180, for "Add to Home Screen" on iPhone/iPad), all drawn from the existing MONSTRUM mark. manifest.json now lists the SVG and PNG icons with separate `any` and `maskable` purposes (the SVG was marked both, which crops the mark on some launchers) and has a stable `id`. The icons are cached by the service worker for offline use.
+- **Discoverability:** new **robots.txt** (allow all, points at the sitemap) and **sitemap.xml** for the live address.
+- No behavior or storage changes: `truthbeacon:v1:claims`, `truthbeacon:v1:follows` and `truthbeacon:v1:preImportBackup` are unchanged. No external resources, no server, no tracking. Service worker cache bumped to `truthbeacon-v1-2026-11-27-link-previews`.
+- Validation: manifest JSON check, sw.js syntax check, HTML head check (one set of tags, absolute image URL), local `python3 -m http.server` load check (200 for the app, every new file and every file in the service-worker shell list), and a visual check of the preview image and maskable icon. The preview card on each social site has not been checked yet.
+
 ## 2026-11-26
 
 ### Portable beacon board: embed your latest CERTAIN claims anywhere

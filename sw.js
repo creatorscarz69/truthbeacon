@@ -1,6 +1,6 @@
 /* MONSTRUM / TruthBeacon: free local offline shell, no external resources. */
-const CACHE_VERSION = 'truthbeacon-v1-2026-11-26-portable-board';
-const APP_SHELL = ['./', './index.html', './manifest.json', './icon.svg'];
+const CACHE_VERSION = 'truthbeacon-v1-2026-11-27-link-previews';
+const APP_SHELL = ['./', './index.html', './manifest.json', './icon.svg', './icon-192.png', './icon-512.png', './icon-maskable-512.png', './apple-touch-icon.png'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_VERSION).then(cache => cache.addAll(APP_SHELL)).then(() => self.skipWaiting()));
 });

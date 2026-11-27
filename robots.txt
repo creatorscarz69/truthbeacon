@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://creatorscarz69.github.io/truthbeacon/sitemap.xml
